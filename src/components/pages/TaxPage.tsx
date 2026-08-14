@@ -76,7 +76,7 @@ export function TaxPage() {
                 <div>
                   {docs.length === 0 ? (
                     <p className="text-[var(--color-text-muted)] italic">
-                      — Próximamente —
+                      Próximamente
                     </p>
                   ) : (
                     <ul className="space-y-4">

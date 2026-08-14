@@ -28,7 +28,7 @@ export function ProjectsPage() {
         </div>
       </section>
 
-      {/* Projects list — editorial stacked, not grid cards */}
+      {/* Projects list - editorial stacked, not grid cards */}
       <section className="py-section px-6 lg:px-12">
         <div className="max-w-[1800px] mx-auto">
           {projects.map((project, i) => (

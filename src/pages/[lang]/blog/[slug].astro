@@ -20,7 +20,7 @@ export function getStaticPaths() {
 
 const { post, lang } = Astro.props;
 ---
-<BaseLayout title={`${post.meta.title['es-419']} — Fundación JD10`} lang={lang}>
+<BaseLayout title={`${post.meta.title['es-419']} - Fundación JD10`} lang={lang}>
   <Header client:only="react" />
   <BlogPostPage post={post} client:only="react" />
   <Footer client:only="react" />

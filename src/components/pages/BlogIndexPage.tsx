@@ -33,7 +33,7 @@ export function BlogIndexPage() {
         </div>
       </section>
 
-      {/* Category filter — minimal text tabs */}
+      {/* Category filter - minimal text tabs */}
       <section className="border-b border-[var(--color-border)] px-6 lg:px-12">
         <div className="max-w-[1800px] mx-auto flex items-center gap-6 overflow-x-auto py-4">
           <button

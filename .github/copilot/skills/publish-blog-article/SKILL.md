@@ -24,7 +24,7 @@ src/content/blog/{slug}/
 
 ## Steps
 
-1. **Determine the slug** — URL-friendly, lowercase, hyphenated (e.g., `responsible-ai-usage`)
+1. **Determine the slug** - URL-friendly, lowercase, hyphenated (e.g., `responsible-ai-usage`)
 
 2. **Create `meta.ts`** with this structure:
 
@@ -54,7 +54,7 @@ export const meta: BlogPostMeta = {
 };
 ```
 
-3. **Create article components** — Each locale gets its own React component file:
+3. **Create article components** - Each locale gets its own React component file:
    - `index.tsx` → Spanish (es-419), the default
    - `en-US.tsx` → English
    - `pt-BR.tsx` → Portuguese
@@ -108,10 +108,10 @@ import NewArticlePt from './new-slug/pt-BR';
 
 Check `src/types/blog.ts` for current categories:
 
-- `ai-education` — AI Education
-- `projects` — Projects
-- `community` — Community
-- `tech` — Technology
+- `ai-education` - AI Education
+- `projects` - Projects
+- `community` - Community
+- `tech` - Technology
 
 ## Available Tags
 

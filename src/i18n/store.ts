@@ -39,7 +39,7 @@ export function setLocale(locale: Locale) {
   localeStore.set(locale);
 }
 
-/** Sync locale from URL — call on every View Transitions navigation */
+/** Sync locale from URL - call on every View Transitions navigation */
 export function syncLocaleFromURL() {
   if (typeof window === "undefined") return;
   const fromURL = getLocaleFromPath(window.location.pathname);

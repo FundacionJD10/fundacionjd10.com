@@ -5,7 +5,7 @@ Usage:
     python scripts/upload-to-r2.py path/to/image.jpg [--prefix blog/my-article]
 
 Outputs the public URL to paste into React components.
-All credentials come from .env — never hard-coded.
+All credentials come from .env - never hard-coded.
 """
 
 import argparse

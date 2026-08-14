@@ -41,7 +41,7 @@ export function ContactPage() {
         </div>
       </section>
 
-      {/* Form section — asymmetric split */}
+      {/* Form section - asymmetric split */}
       <section className="py-section px-6 lg:px-12">
         <div className="max-w-[1800px] mx-auto grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24">
           <div>

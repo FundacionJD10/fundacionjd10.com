@@ -23,33 +23,33 @@ export const PAGES: Record<string, PageDef> = {
   home: {
     slugs: { es: "", en: "", pt: "" },
     titles: {
-      "es-419": "Fundación JD10 — Hacia un uso responsable de la tecnología",
-      "en-US": "Fundación JD10 — Towards a responsible use of technology",
-      "pt-BR": "Fundación JD10 — Rumo a um uso responsável da tecnologia",
+      "es-419": "Fundación JD10 - Hacia un uso responsable de la tecnología",
+      "en-US": "Fundación JD10 - Towards a responsible use of technology",
+      "pt-BR": "Fundación JD10 - Rumo a um uso responsável da tecnologia",
     },
   },
   about: {
     slugs: { es: "nosotros", en: "about", pt: "sobre-nos" },
     titles: {
-      "es-419": "Sobre nosotros — Fundación JD10",
-      "en-US": "About us — Fundación JD10",
-      "pt-BR": "Sobre nós — Fundación JD10",
+      "es-419": "Sobre nosotros - Fundación JD10",
+      "en-US": "About us - Fundación JD10",
+      "pt-BR": "Sobre nós - Fundación JD10",
     },
   },
   projects: {
     slugs: { es: "proyectos", en: "projects", pt: "projetos" },
     titles: {
-      "es-419": "Proyectos — Fundación JD10",
-      "en-US": "Projects — Fundación JD10",
-      "pt-BR": "Projetos — Fundación JD10",
+      "es-419": "Proyectos - Fundación JD10",
+      "en-US": "Projects - Fundación JD10",
+      "pt-BR": "Projetos - Fundación JD10",
     },
   },
   contact: {
     slugs: { es: "contacto", en: "contact", pt: "contato" },
     titles: {
-      "es-419": "Contacto — Fundación JD10",
-      "en-US": "Contact — Fundación JD10",
-      "pt-BR": "Contato — Fundación JD10",
+      "es-419": "Contacto - Fundación JD10",
+      "en-US": "Contact - Fundación JD10",
+      "pt-BR": "Contato - Fundación JD10",
     },
   },
   tax: {
@@ -59,25 +59,25 @@ export const PAGES: Record<string, PageDef> = {
       pt: "regime-tributario",
     },
     titles: {
-      "es-419": "Régimen Tributario Especial — Fundación JD10",
-      "en-US": "Special Tax Regime — Fundación JD10",
-      "pt-BR": "Regime Tributário Especial — Fundación JD10",
+      "es-419": "Régimen Tributario Especial - Fundación JD10",
+      "en-US": "Special Tax Regime - Fundación JD10",
+      "pt-BR": "Regime Tributário Especial - Fundación JD10",
     },
   },
   transparency: {
     slugs: { es: "transparencia", en: "transparency", pt: "transparencia" },
     titles: {
-      "es-419": "Transparencia — Fundación JD10",
-      "en-US": "Transparency — Fundación JD10",
-      "pt-BR": "Transparência — Fundación JD10",
+      "es-419": "Transparencia - Fundación JD10",
+      "en-US": "Transparency - Fundación JD10",
+      "pt-BR": "Transparência - Fundación JD10",
     },
   },
   blog: {
     slugs: { es: "blog", en: "blog", pt: "blog" },
     titles: {
-      "es-419": "Blog — Fundación JD10",
-      "en-US": "Blog — Fundación JD10",
-      "pt-BR": "Blog — Fundación JD10",
+      "es-419": "Blog - Fundación JD10",
+      "en-US": "Blog - Fundación JD10",
+      "pt-BR": "Blog - Fundación JD10",
     },
   },
 };

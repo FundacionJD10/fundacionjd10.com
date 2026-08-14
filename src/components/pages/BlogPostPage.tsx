@@ -19,7 +19,7 @@ export function BlogPostPage({ post }: Props) {
 
   return (
     <main className="flex-1">
-      {/* Article header — full-width teal band */}
+      {/* Article header - full-width teal band */}
       <header className="bg-[var(--color-bg-accent)] text-white px-6 lg:px-12 pb-16 lg:pb-24 pt-32">
         <div className="max-w-[1800px] mx-auto">
           <div className="flex flex-wrap gap-3 mb-6">

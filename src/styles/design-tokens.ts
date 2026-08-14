@@ -1,5 +1,5 @@
 /**
- * Design tokens — to be filled after designer meeting.
+ * Design tokens - to be filled after designer meeting.
  * Update CSS custom properties in global.css and these TS references together.
  */
 export const tokens = {

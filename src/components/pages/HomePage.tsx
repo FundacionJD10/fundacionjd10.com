@@ -12,13 +12,16 @@ export function HomePage() {
 
   return (
     <main className="flex-1">
-      {/* Hero — full-bleed dark section, editorial oversized type */}
+      {/* Hero - full-bleed dark section, editorial oversized type */}
       <section className="relative min-h-screen bg-[var(--color-bg-accent)] text-white flex flex-col justify-end px-6 lg:px-12 pb-16 lg:pb-24 overflow-hidden">
         {/* Decorative accent line */}
         <div className="absolute top-0 left-[15%] w-px h-[40%] bg-gradient-to-b from-transparent via-white/20 to-transparent" />
         <div className="absolute top-[20%] right-[10%] w-32 h-32 rounded-full border border-white/10" />
 
         <div className="max-w-[1800px] mx-auto w-full">
+          <p className="text-[11px] font-sans uppercase tracking-[0.2em] text-white/60 mb-6">
+            Fundación JD10
+          </p>
           <h1 className="font-heading text-display max-w-[15ch] mb-8">
             {t("hero_title")}
           </h1>
@@ -50,7 +53,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Mission — split layout with oversized number */}
+      {/* Mission - split layout with oversized number */}
       <section className="py-section px-6 lg:px-12">
         <div className="max-w-[1800px] mx-auto grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24 items-start">
           <div>
@@ -81,7 +84,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Stats band — horizontal scroll feel */}
+      {/* Stats band - horizontal scroll feel */}
       <section className="border-y border-[var(--color-border)] py-12 px-6 lg:px-12 overflow-hidden">
         <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           <StatItem number="100%" label="Open Source" />
@@ -104,7 +107,7 @@ export function HomePage() {
             {blogPosts.length === 0 ? (
               <div className="border-l-2 border-[var(--color-border)] pl-6 py-2">
                 <p className="text-[var(--color-text-muted)] italic">
-                  Próximamente — Los artículos aparecerán aquí
+                  Los artículos aparecerán aquí próximamente
                 </p>
               </div>
             ) : (
@@ -143,7 +146,7 @@ export function HomePage() {
             {projects.length === 0 ? (
               <div className="border-l-2 border-[var(--color-border)] pl-6 py-2">
                 <p className="text-[var(--color-text-muted)] italic">
-                  Próximamente — Los proyectos aparecerán aquí
+                  Los proyectos aparecerán aquí próximamente
                 </p>
               </div>
             ) : (
