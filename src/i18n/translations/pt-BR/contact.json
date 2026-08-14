@@ -1,0 +1,11 @@
+{
+  "page_title": "Contato",
+  "intro": "Tem perguntas, propostas ou quer colaborar? Entre em contato.",
+  "form_name": "Nome",
+  "form_email": "E-mail",
+  "form_subject": "Assunto",
+  "form_message": "Mensagem",
+  "form_submit": "Enviar mensagem",
+  "form_success": "Mensagem enviada! Retornaremos em breve.",
+  "form_error": "Houve um erro ao enviar a mensagem. Por favor, tente novamente."
+}

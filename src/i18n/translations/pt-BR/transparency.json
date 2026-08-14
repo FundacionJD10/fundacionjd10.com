@@ -1,0 +1,22 @@
+{
+  "page_title": "Transparência",
+  "intro": "Acreditamos na prestação de contas aberta. Aqui você pode consultar como os recursos da fundação são utilizados.",
+  "section_reports": "Relatórios financeiros",
+  "section_donations": "Uso das doações",
+  "section_annual": "Resumo anual",
+  "section_constitution": "Ata de constituição",
+  "section_statutes": "Estatutos",
+  "section_expenses": "Despesas operacionais",
+  "section_expenses_intro": "Detalhamento mensal dos serviços e despesas operacionais da fundação, incluindo comprovantes de pagamento.",
+  "view": "Ver documento",
+  "view_receipt": "Ver comprovante",
+  "no_entries": "Sem registros ainda",
+  "total": "Total",
+  "monthly_breakdown": "Detalhamento mensal",
+  "expense_employee_assistant": "Assistente Operacional",
+  "expense_employee_assistant_desc": "Salário mensal + contribuições de previdência social (saúde, pensão, ARL, caixa de compensação)",
+  "expense_internet": "Serviço de Internet",
+  "expense_internet_desc": "Conexão de internet para a sede da fundação",
+  "expense_bank_account": "Conta bancária",
+  "expense_bank_account_desc": "Taxa de manutenção da conta bancária da fundação"
+}

@@ -1,0 +1,22 @@
+{
+  "page_title": "Transparency",
+  "intro": "We believe in open accountability. Here you can review how the foundation's resources are used.",
+  "section_reports": "Financial reports",
+  "section_donations": "Use of donations",
+  "section_annual": "Annual summary",
+  "section_constitution": "Constitution act",
+  "section_statutes": "Statutes",
+  "section_expenses": "Operational expenses",
+  "section_expenses_intro": "Monthly breakdown of the foundation's services and operational expenses, including payment receipts.",
+  "view": "View document",
+  "view_receipt": "View receipt",
+  "no_entries": "No entries yet",
+  "total": "Total",
+  "monthly_breakdown": "Monthly breakdown",
+  "expense_employee_assistant": "Operational Assistant",
+  "expense_employee_assistant_desc": "Monthly salary + social security contributions (health, pension, ARL, compensation fund)",
+  "expense_internet": "Internet service",
+  "expense_internet_desc": "Internet connection for the foundation's headquarters",
+  "expense_bank_account": "Bank account",
+  "expense_bank_account_desc": "Foundation's bank account maintenance fee"
+}

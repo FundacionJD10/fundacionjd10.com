@@ -1,0 +1,22 @@
+{
+  "page_title": "Transparencia",
+  "intro": "Creemos en la rendición de cuentas abierta. Aquí puedes consultar cómo se utilizan los recursos de la fundación.",
+  "section_reports": "Informes financieros",
+  "section_donations": "Uso de donaciones",
+  "section_annual": "Resumen anual",
+  "section_constitution": "Acta de constitución",
+  "section_statutes": "Estatutos",
+  "section_expenses": "Gastos operativos",
+  "section_expenses_intro": "Detalle mensual de los servicios y gastos operativos de la fundación, incluyendo comprobantes de pago.",
+  "view": "Ver documento",
+  "view_receipt": "Ver comprobante",
+  "no_entries": "Sin registros aún",
+  "total": "Total",
+  "monthly_breakdown": "Desglose mensual",
+  "expense_employee_assistant": "Asistente Operativa",
+  "expense_employee_assistant_desc": "Salario mensual + aportes de seguridad social (salud, pensión, ARL, caja de compensación)",
+  "expense_internet": "Servicio de Internet",
+  "expense_internet_desc": "Conexión de internet para la sede de la fundación",
+  "expense_bank_account": "Cuenta bancaria",
+  "expense_bank_account_desc": "Cuota de manejo de la cuenta bancaria de la fundación"
+}

@@ -1,0 +1,11 @@
+{
+  "page_title": "Contact",
+  "intro": "Questions, proposals, or interested in collaborating? Get in touch.",
+  "form_name": "Name",
+  "form_email": "Email",
+  "form_subject": "Subject",
+  "form_message": "Message",
+  "form_submit": "Send message",
+  "form_success": "Message sent! We'll get back to you soon.",
+  "form_error": "There was an error sending your message. Please try again."
+}
