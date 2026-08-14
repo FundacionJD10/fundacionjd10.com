@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { Header } from '@components/Header';
+import { Footer } from '@components/Footer';
+import { BlogIndexPage } from '@components/pages/BlogIndexPage';
+import { PAGES, LANG_TO_LOCALE, type LangPrefix } from '@i18n/routes';
+
+export function getStaticPaths() {
+  return (['es', 'en', 'pt'] as const).map((lang) => ({
+    params: { lang },
+    props: { lang },
+  }));
+}
+
+const { lang } = Astro.props;
+const locale = LANG_TO_LOCALE[lang as LangPrefix];
+const title = PAGES.blog.titles[locale];
+---
+<BaseLayout title={title} lang={lang}>
+  <Header client:only="react" />
+  <BlogIndexPage client:only="react" />
+  <Footer client:only="react" />
+</BaseLayout>

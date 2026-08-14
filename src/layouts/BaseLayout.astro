@@ -1,0 +1,99 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import ThemeScript from '@theme/ThemeScript.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  lang?: string;
+}
+
+const {
+  title = 'Fundación JD10',
+  description = 'Hacia un uso responsable de la tecnología — Enseñamos el uso responsable de la IA y construimos herramientas gratuitas.',
+  ogImage = '/og-default.png',
+  lang = 'es',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.toString()} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.toString()} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()} />
+
+    <!-- JSON-LD for NGO -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "NGO",
+      "name": "Fundación JD10",
+      "url": Astro.site?.toString(),
+      "description": description,
+      "foundingDate": "2026",
+      "areaServed": "Latin America",
+    })} />
+
+    <ViewTransitions />
+    <ThemeScript />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <!-- Navigation loading bar -->
+    <div id="nav-loader" class="fixed top-0 left-0 right-0 h-0.5 bg-[var(--color-text)] z-[100] opacity-0 transition-opacity duration-150" style="transform: scaleX(0); transform-origin: left;"></div>
+    <slot />
+    <script>
+      const loader = document.getElementById('nav-loader');
+      let animationFrame: number;
+      let progress = 0;
+
+      function startLoader() {
+        if (!loader) return;
+        progress = 0;
+        loader.style.opacity = '1';
+        loader.style.transform = 'scaleX(0)';
+        
+        function animate() {
+          progress += (0.9 - progress) * 0.08;
+          loader.style.transform = `scaleX(${progress})`;
+          if (progress < 0.9) {
+            animationFrame = requestAnimationFrame(animate);
+          }
+        }
+        animate();
+      }
+
+      function completeLoader() {
+        if (!loader) return;
+        cancelAnimationFrame(animationFrame);
+        loader.style.transform = 'scaleX(1)';
+        setTimeout(() => {
+          loader.style.opacity = '0';
+          setTimeout(() => {
+            loader.style.transform = 'scaleX(0)';
+          }, 150);
+        }, 100);
+      }
+
+      document.addEventListener('astro:before-preparation', startLoader);
+      document.addEventListener('astro:after-swap', completeLoader);
+    </script>
+  </body>
+</html>

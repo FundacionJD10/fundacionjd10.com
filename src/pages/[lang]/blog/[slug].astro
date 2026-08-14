@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { Header } from '@components/Header';
+import { Footer } from '@components/Footer';
+import { BlogPostPage } from '@components/pages/BlogPostPage';
+import { blogPosts } from '@content/blog/index';
+
+export function getStaticPaths() {
+  const paths: Array<{ params: { lang: string; slug: string }; props: { post: any; lang: string } }> = [];
+  for (const lang of ['es', 'en', 'pt']) {
+    for (const post of blogPosts) {
+      paths.push({
+        params: { lang, slug: post.meta.slug },
+        props: { post, lang },
+      });
+    }
+  }
+  return paths;
+}
+
+const { post, lang } = Astro.props;
+---
+<BaseLayout title={`${post.meta.title['es-419']} — Fundación JD10`} lang={lang}>
+  <Header client:only="react" />
+  <BlogPostPage post={post} client:only="react" />
+  <Footer client:only="react" />
+</BaseLayout>

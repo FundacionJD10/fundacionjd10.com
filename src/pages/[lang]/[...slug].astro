@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { Header } from '@components/Header';
+import { Footer } from '@components/Footer';
+import { HomePage } from '@components/pages/HomePage';
+import { AboutPage } from '@components/pages/AboutPage';
+import { ProjectsPage } from '@components/pages/ProjectsPage';
+import { ContactPage } from '@components/pages/ContactPage';
+import { TaxPage } from '@components/pages/TaxPage';
+import { TransparencyPage } from '@components/pages/TransparencyPage';
+import { PAGES, LANG_TO_LOCALE, type LangPrefix } from '@i18n/routes';
+
+export function getStaticPaths() {
+  const paths: Array<{ params: { lang: string; slug?: string }; props: { pageId: string; lang: string } }> = [];
+  for (const [pageId, page] of Object.entries(PAGES)) {
+    if (pageId === 'blog') continue; // blog has its own routes
+    for (const [lang, slug] of Object.entries(page.slugs)) {
+      paths.push({
+        params: { lang, slug: slug || undefined },
+        props: { pageId, lang },
+      });
+    }
+  }
+  return paths;
+}
+
+const { pageId, lang } = Astro.props;
+const locale = LANG_TO_LOCALE[lang as LangPrefix];
+const page = PAGES[pageId];
+const title = page.titles[locale];
+---
+<BaseLayout title={title} lang={lang}>
+  <Header client:only="react" />
+  {pageId === 'home' && <HomePage client:only="react" />}
+  {pageId === 'about' && <AboutPage client:only="react" />}
+  {pageId === 'projects' && <ProjectsPage client:only="react" />}
+  {pageId === 'contact' && <ContactPage client:only="react" />}
+  {pageId === 'tax' && <TaxPage client:only="react" />}
+  {pageId === 'transparency' && <TransparencyPage client:only="react" />}
+  <Footer client:only="react" />
+</BaseLayout>
