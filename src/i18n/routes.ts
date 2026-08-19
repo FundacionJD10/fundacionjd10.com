@@ -82,12 +82,12 @@ export const PAGES: Record<string, PageDef> = {
   },
 };
 
-/** Build a localized path: localePath("about", "en") → "/en/about" */
+/** Build a localized path: localePath("about", "en") → "/en/about/" */
 export function localePath(pageId: string, lang: LangPrefix): string {
   const page = PAGES[pageId];
   if (!page) return `/${lang}/`;
   const slug = page.slugs[lang];
-  return slug ? `/${lang}/${slug}` : `/${lang}/`;
+  return slug ? `/${lang}/${slug}/` : `/${lang}/`;
 }
 
 /** Resolve current URL to a page ID */
@@ -116,13 +116,13 @@ export function switchLocalePath(
   const current = resolvePageFromPath(pathname);
   if (current) return localePath(current.pageId, targetLang);
 
-  // Blog post paths: /es/blog/slug → /en/blog/slug
-  const blogMatch = pathname.match(/^\/(es|en|pt)\/blog\/(.+)$/);
-  if (blogMatch) return `/${targetLang}/blog/${blogMatch[2]}`;
+  // Blog post paths: /es/blog/slug/ → /en/blog/slug/
+  const blogMatch = pathname.match(/^\/(es|en|pt)\/blog\/(.+?)\/?$/);
+  if (blogMatch) return `/${targetLang}/blog/${blogMatch[2]}/`;
 
   // Blog index
   const blogIndexMatch = pathname.match(/^\/(es|en|pt)\/blog\/?$/);
-  if (blogIndexMatch) return `/${targetLang}/blog`;
+  if (blogIndexMatch) return `/${targetLang}/blog/`;
 
   return `/${targetLang}/`;
 }

@@ -1,18 +1,17 @@
 ---
-// Static redirect: uses cookie for locale preference, defaults to /es/
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { Header } from '@components/Header';
+import { Footer } from '@components/Footer';
+import { HomePage } from '@components/pages/HomePage';
+import { PAGES } from '@i18n/routes';
+
+// Root serves the default-locale (Spanish) home directly — no redirect.
+// Client components pick the visitor's language (browser/cookie) at runtime.
+// Canonical points to /es/ so the localized URL is the one indexed.
+const title = PAGES.home.titles['es-419'];
 ---
-<!doctype html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <script is:inline>
-      var match = document.cookie.match(/(?:^|; )locale=([^;]*)/);
-      var locale = match ? decodeURIComponent(match[1]) : '';
-      var lang = locale === 'en-US' ? 'en' : locale === 'pt-BR' ? 'pt' : 'es';
-      window.location.replace('/' + lang + '/');
-    </script>
-    <meta http-equiv="refresh" content="0;url=/es/" />
-    <title>Redirecting…</title>
-  </head>
-  <body></body>
-</html>
+<BaseLayout title={title} lang="es" canonical="/es/">
+  <Header client:only="react" />
+  <HomePage client:only="react" />
+  <Footer client:only="react" />
+</BaseLayout>

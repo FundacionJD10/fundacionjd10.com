@@ -18,5 +18,11 @@
   "expense_internet": "Serviço de Internet",
   "expense_internet_desc": "Conexão de internet para a sede da fundação",
   "expense_bank_account": "Conta bancária",
-  "expense_bank_account_desc": "Taxa de manutenção da conta bancária da fundação"
+  "expense_bank_account_desc": "Taxa de manutenção da conta bancária da fundação",
+  "expense_detail_salary": "Salário",
+  "expense_detail_transport_allowance": "Auxílio de transporte",
+  "expense_detail_social_security": "Contribuições de previdência social",
+  "expense_detail_bank_monthly_plan": "Taxa mensal de manutenção",
+  "expense_detail_bank_taxes": "Impostos e encargos bancários",
+  "expense_detail_bank_required_insurance": "Seguro obrigatório"
 }

@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import ThemeScript from '@theme/ThemeScript.astro';
+import { switchLocalePath } from '@i18n/routes';
 import '../styles/global.css';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   lang?: string;
+  canonical?: string;
 }
 
 const {
@@ -15,9 +17,24 @@ const {
   description = 'Hacia un uso responsable de la tecnología - Enseñamos el uso responsable de la IA y construimos herramientas gratuitas.',
   ogImage = '/og-default.png',
   lang = 'es',
+  canonical,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(canonical ?? Astro.url.pathname, Astro.site);
+
+// hreflang alternates for the current page, matching the built trailing-slash URLs.
+// Codes stay generic (es/en/pt) to match the sitemap's hreflang values.
+const withSlash = (p: string) => (p.endsWith('/') ? p : `${p}/`);
+const LOCALE_ALTERNATES = [
+  { locale: 'es-419', hreflang: 'es' },
+  { locale: 'en-US', hreflang: 'en' },
+  { locale: 'pt-BR', hreflang: 'pt' },
+] as const;
+const alternates = LOCALE_ALTERNATES.map(({ locale, hreflang }) => ({
+  hreflang,
+  href: new URL(withSlash(switchLocalePath(Astro.url.pathname, locale)), Astro.site).toString(),
+}));
+const xDefaultURL = new URL(withSlash(switchLocalePath(Astro.url.pathname, 'es-419')), Astro.site).toString();
 ---
 <!doctype html>
 <html lang={lang}>
@@ -26,6 +43,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL.toString()} />
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefaultURL} />
     <link rel="sitemap" href={new URL('/sitemap-index.xml', Astro.site).toString()} />
 
     <!-- Open Graph -->

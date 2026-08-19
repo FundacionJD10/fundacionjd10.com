@@ -6,12 +6,21 @@
 export interface ExpenseEntry {
   /** Month in YYYY-MM format */
   month: string;
-  /** Amount in COP (Colombian Pesos) */
-  amount: number;
+  /** Total amount in COP (Colombian Pesos); optional when detailItems are provided */
+  amount?: number;
+  /** Optional itemized details for this month */
+  detailItems?: ExpenseDetailItem[];
   /** Receipt/evidence document URL (optional) */
   receiptUrl?: string;
   /** Additional notes (optional) */
   notes?: string;
+}
+
+export interface ExpenseDetailItem {
+  /** Translation key for the detail label */
+  nameKey: string;
+  /** Amount in COP (Colombian Pesos) */
+  amount: number;
 }
 
 export interface ExpenseCategory {
@@ -38,9 +47,21 @@ export const EXPENSE_CATEGORIES: ExpenseCategory[] = [
       // Example:
       // {
       //   month: "2024-08",
-      //   amount: 2500000, // Salary + social security
+      //   detailItems: [
+      //     { nameKey: "expense_detail_salary", amount: 1750000 },
+      //     { nameKey: "expense_detail_transport_allowance", amount: 200000 },
+      //     { nameKey: "expense_detail_social_security", amount: 460000 },
+      //   ],
       //   receiptUrl: "https://archivos.fundacionjd10.com/expenses/2024-08/nomina-asistente.pdf",
       // },
+      {
+        month: "2026-08",
+        detailItems: [
+          { nameKey: "expense_detail_salary", amount: 1750000 },
+          { nameKey: "expense_detail_transport_allowance", amount: 200000 },
+          { nameKey: "expense_detail_social_security", amount: 460000 },
+        ],
+      },
     ],
   },
   {
@@ -58,7 +79,21 @@ export const EXPENSE_CATEGORIES: ExpenseCategory[] = [
     descriptionKey: "expense_bank_account_desc",
     icon: "bank",
     entries: [
-      // Add entries as they become available
+      {
+        month: "2026-08",
+        detailItems: [
+          { nameKey: "expense_detail_bank_monthly_plan", amount: 45000 },
+          { nameKey: "expense_detail_bank_taxes", amount: 8550 },
+          { nameKey: "expense_detail_bank_required_insurance", amount: 15000 },
+        ],
+      },
+      {
+        month: "2026-07",
+        detailItems: [
+          { nameKey: "expense_detail_bank_monthly_plan", amount: 45000 },
+          { nameKey: "expense_detail_bank_taxes", amount: 8550 },
+        ],
+      },
     ],
   },
 ];
@@ -85,10 +120,20 @@ export function formatMonth(month: string, locale: string): string {
 }
 
 /**
+ * Get total amount for a single monthly entry
+ */
+export function getEntryTotal(entry: ExpenseEntry): number {
+  if (typeof entry.amount === "number") {
+    return entry.amount;
+  }
+  return entry.detailItems?.reduce((sum, item) => sum + item.amount, 0) ?? 0;
+}
+
+/**
  * Get total expenses for a category
  */
 export function getCategoryTotal(category: ExpenseCategory): number {
-  return category.entries.reduce((sum, entry) => sum + entry.amount, 0);
+  return category.entries.reduce((sum, entry) => sum + getEntryTotal(entry), 0);
 }
 
 /**
@@ -96,11 +141,11 @@ export function getCategoryTotal(category: ExpenseCategory): number {
  */
 export function getMonthlyTotal(
   categories: ExpenseCategory[],
-  month: string
+  month: string,
 ): number {
   return categories.reduce((sum, category) => {
     const entry = category.entries.find((e) => e.month === month);
-    return sum + (entry?.amount ?? 0);
+    return sum + (entry ? getEntryTotal(entry) : 0);
   }, 0);
 }
 

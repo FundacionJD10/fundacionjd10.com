@@ -18,5 +18,11 @@
   "expense_internet": "Servicio de Internet",
   "expense_internet_desc": "Conexión de internet para la sede de la fundación",
   "expense_bank_account": "Cuenta bancaria",
-  "expense_bank_account_desc": "Cuota de manejo de la cuenta bancaria de la fundación"
+  "expense_bank_account_desc": "Cuota de manejo de la cuenta bancaria de la fundación",
+  "expense_detail_salary": "Salario",
+  "expense_detail_transport_allowance": "Auxilio de transporte",
+  "expense_detail_social_security": "Aportes de seguridad social",
+  "expense_detail_bank_monthly_plan": "Cuota de manejo",
+  "expense_detail_bank_taxes": "Impuestos y gravámenes",
+  "expense_detail_bank_required_insurance": "Seguro requerido"
 }

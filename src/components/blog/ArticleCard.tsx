@@ -1,6 +1,7 @@
 import { useTranslation } from "@i18n/useTranslation";
 import { useStore } from "@nanostores/react";
 import { localeStore } from "@i18n/store";
+import { LOCALE_TO_LANG } from "@i18n/routes";
 import type { BlogPostMeta } from "@types/blog";
 import { CATEGORIES } from "@types/blog";
 
@@ -11,13 +12,14 @@ interface Props {
 export function ArticleCard({ post }: Props) {
   const { t } = useTranslation("blog");
   const locale = useStore(localeStore);
+  const href = `/${LOCALE_TO_LANG[locale]}/blog/${post.slug}/`;
 
   const categories = CATEGORIES.filter((c) => post.categories.includes(c.id));
 
   return (
     <article className="group">
       {post.featuredImage && (
-        <a href={`/blog/${post.slug}`} className="block overflow-hidden mb-4">
+        <a href={href} className="block overflow-hidden mb-4">
           <img
             src={post.featuredImage}
             alt={post.title[locale]}
@@ -38,7 +40,7 @@ export function ArticleCard({ post }: Props) {
       </div>
       <h3 className="font-heading text-xl lg:text-2xl text-[var(--color-text)] mb-3 leading-tight">
         <a
-          href={`/blog/${post.slug}`}
+          href={href}
           className="hover:opacity-70 transition-opacity"
         >
           {post.title[locale]}

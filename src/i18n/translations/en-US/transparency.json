@@ -18,5 +18,11 @@
   "expense_internet": "Internet service",
   "expense_internet_desc": "Internet connection for the foundation's headquarters",
   "expense_bank_account": "Bank account",
-  "expense_bank_account_desc": "Foundation's bank account maintenance fee"
+  "expense_bank_account_desc": "Foundation's bank account maintenance fee",
+  "expense_detail_salary": "Salary",
+  "expense_detail_transport_allowance": "Transportation allowance",
+  "expense_detail_social_security": "Social security contributions",
+  "expense_detail_bank_monthly_plan": "Monthly plan fee",
+  "expense_detail_bank_taxes": "Taxes and banking charges",
+  "expense_detail_bank_required_insurance": "Required insurance"
 }

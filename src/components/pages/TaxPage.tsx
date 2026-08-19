@@ -12,7 +12,7 @@ interface Document {
 const DOCUMENTS: Document[] = [
   {
     sectionKey: "section_rut",
-    fileName: "RUT.pdf",
+    fileName: "RUT",
     url: "https://archivos.fundacionjd10.com/legal/RUT.pdf",
   },
   {
@@ -24,6 +24,11 @@ const DOCUMENTS: Document[] = [
     sectionKey: "section_no_investigation",
     fileName: "Certificado No Investigación 2026",
     url: "https://archivos.fundacionjd10.com/legal/CertificadoNoInvestigacion2026.pdf",
+  },
+  {
+    sectionKey: "section_bank",
+    fileName: "Certificación Bancaria",
+    url: "https://archivos.fundacionjd10.com/legal/CertificacionBancaria.pdf",
   },
 ];
 

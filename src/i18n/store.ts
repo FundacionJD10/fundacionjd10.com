@@ -22,6 +22,20 @@ function setCookie(name: string, value: string, days: number) {
   document.cookie = `${name}=${encodeURIComponent(value)};expires=${expires};path=/;SameSite=Lax`;
 }
 
+function getBrowserLocale(): Locale | undefined {
+  if (typeof navigator === "undefined") return undefined;
+  const langs = navigator.languages?.length
+    ? navigator.languages
+    : [navigator.language];
+  for (const raw of langs) {
+    const code = raw.toLowerCase();
+    if (code.startsWith("en")) return "en-US";
+    if (code.startsWith("pt")) return "pt-BR";
+    if (code.startsWith("es")) return "es-419";
+  }
+  return undefined;
+}
+
 function getInitialLocale(): Locale {
   if (typeof window !== "undefined") {
     const fromURL = getLocaleFromPath(window.location.pathname);
@@ -29,7 +43,9 @@ function getInitialLocale(): Locale {
   }
   const stored = getCookie("locale");
   if (stored && LOCALES.includes(stored as Locale)) return stored as Locale;
-  return "es-419";
+  // No URL prefix and no saved choice (e.g. landing on "/"): follow the browser,
+  // falling back to Spanish.
+  return getBrowserLocale() ?? "es-419";
 }
 
 export const localeStore = atom<Locale>(getInitialLocale());

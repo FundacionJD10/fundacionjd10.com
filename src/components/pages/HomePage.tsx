@@ -115,7 +115,7 @@ export function HomePage() {
                 {blogPosts.slice(0, 3).map((post) => (
                   <li key={post.meta.slug}>
                     <a
-                      href={`/${lang}/blog/${post.meta.slug}`}
+                      href={`/${lang}/blog/${post.meta.slug}/`}
                       className="text-lg text-[var(--color-text-secondary)] hover:text-[var(--color-text)] transition-colors"
                     >
                       {post.meta.title[locale]}

@@ -9,6 +9,12 @@ const normalizedSite = site.endsWith("/") ? site.slice(0, -1) : site;
 export default defineConfig({
   site,
   output: "static",
+  // Enforce a single canonical URL shape: every page is /path/ (trailing slash),
+  // matching the built directory files and the sitemap URLs exactly (no redirects).
+  trailingSlash: "always",
+  build: {
+    format: "directory",
+  },
   prefetch: {
     prefetchAll: true,
     defaultStrategy: "hover",
@@ -21,8 +27,8 @@ export default defineConfig({
         defaultLocale: "es",
         locales: {
           es: "es",
-          en: "en-US",
-          pt: "pt-BR",
+          en: "en",
+          pt: "pt",
         },
       },
       filter: (page) => page !== `${normalizedSite}/`,

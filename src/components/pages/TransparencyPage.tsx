@@ -6,6 +6,7 @@ import {
   formatCOP,
   formatMonth,
   getCategoryTotal,
+  getEntryTotal,
   type ExpenseCategory,
 } from "@content/expenses/data";
 import { useStore } from "@nanostores/react";
@@ -17,32 +18,82 @@ function ExpenseIcon({ type }: { type: ExpenseCategory["icon"] }) {
   switch (type) {
     case "employee":
       return (
-        <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        <svg
+          className={iconClass}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+          />
         </svg>
       );
     case "internet":
       return (
-        <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z" />
+        <svg
+          className={iconClass}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"
+          />
         </svg>
       );
     case "bank":
       return (
-        <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+        <svg
+          className={iconClass}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z"
+          />
         </svg>
       );
     case "utilities":
       return (
-        <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+        <svg
+          className={iconClass}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+          />
         </svg>
       );
     default:
       return (
-        <svg className={iconClass} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+        <svg
+          className={iconClass}
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={1.5}
+            d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
+          />
         </svg>
       );
   }
@@ -60,12 +111,12 @@ export function TransparencyPage() {
   const DOCUMENTS = [
     {
       sectionKey: "section_constitution",
-      fileName: "ActaDeConstitucion.pdf",
+      fileName: "Acta de Constitución",
       url: "https://archivos.fundacionjd10.com/legal/ActaDeConstitucion.pdf",
     },
     {
       sectionKey: "section_statutes",
-      fileName: "Estatutos.pdf",
+      fileName: "Estatutos",
       url: "https://archivos.fundacionjd10.com/legal/Estatutos.pdf",
     },
   ];
@@ -177,33 +228,52 @@ export function TransparencyPage() {
                               {t("monthly_breakdown")}
                             </h4>
                             <ul className="space-y-2">
-                              {category.entries.map((entry) => (
+                              {category.entries.map((entry, entryIndex) => (
                                 <li
-                                  key={entry.month}
-                                  className="flex items-center gap-4 py-2 border-b border-[var(--color-border)] last:border-b-0"
+                                  key={`${entry.month}-${entryIndex}`}
+                                  className="py-2 border-b border-[var(--color-border)] last:border-b-0"
                                 >
-                                  <span className="text-sm text-[var(--color-text)] capitalize">
-                                    {formatMonth(
-                                      entry.month,
-                                      localeMap[locale] || "es-CO"
+                                  <div className="flex items-center gap-4">
+                                    <span className="text-sm text-[var(--color-text)] capitalize">
+                                      {formatMonth(
+                                        entry.month,
+                                        localeMap[locale] || "es-CO",
+                                      )}
+                                    </span>
+                                    <span className="text-sm font-mono text-[var(--color-text-muted)] ml-auto">
+                                      {formatCOP(getEntryTotal(entry))}
+                                    </span>
+                                    {entry.receiptUrl && (
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          setViewDoc({
+                                            url: entry.receiptUrl!,
+                                            fileName: `${category.id}-${entry.month}.pdf`,
+                                          });
+                                        }}
+                                        className="text-xs font-medium text-[var(--color-text)] hover:opacity-70 transition-opacity"
+                                      >
+                                        {t("view_receipt")} →
+                                      </button>
                                     )}
-                                  </span>
-                                  <span className="text-sm font-mono text-[var(--color-text-muted)] ml-auto">
-                                    {formatCOP(entry.amount)}
-                                  </span>
-                                  {entry.receiptUrl && (
-                                    <button
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        setViewDoc({
-                                          url: entry.receiptUrl!,
-                                          fileName: `${category.id}-${entry.month}.pdf`,
-                                        });
-                                      }}
-                                      className="text-xs font-medium text-[var(--color-text)] hover:opacity-70 transition-opacity"
-                                    >
-                                      {t("view_receipt")} →
-                                    </button>
+                                  </div>
+                                  {entry.detailItems && entry.detailItems.length > 0 && (
+                                    <ul className="mt-2 ml-5 space-y-1">
+                                      {entry.detailItems.map((item, itemIndex) => (
+                                        <li
+                                          key={`${entry.month}-${item.nameKey}-${itemIndex}`}
+                                          className="flex items-center gap-3 text-xs"
+                                        >
+                                          <span className="text-[var(--color-text-muted)]">
+                                            {t(item.nameKey)}
+                                          </span>
+                                          <span className="ml-auto font-mono text-[var(--color-text-muted)]/90">
+                                            {formatCOP(item.amount)}
+                                          </span>
+                                        </li>
+                                      ))}
+                                    </ul>
                                   )}
                                 </li>
                               ))}
