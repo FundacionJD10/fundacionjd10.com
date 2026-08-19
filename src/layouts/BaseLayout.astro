@@ -48,6 +48,7 @@ const xDefaultURL = new URL(withSlash(switchLocalePath(Astro.url.pathname, 'es-4
     ))}
     <link rel="alternate" hreflang="x-default" href={xDefaultURL} />
     <link rel="sitemap" href={new URL('/sitemap-index.xml', Astro.site).toString()} />
+    <link rel="describedby" href={new URL('/llms.txt', Astro.site).toString()} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
