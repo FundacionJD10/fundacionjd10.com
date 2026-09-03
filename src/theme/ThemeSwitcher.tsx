@@ -1,11 +1,20 @@
+import { useEffect, useState } from "react";
 import { useStore } from "@nanostores/react";
 import { themeStore, setTheme, type Theme } from "./store";
 
 export function ThemeSwitcher() {
   const current = useStore(themeStore);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const next: Theme = current === "dark" ? "light" : "dark";
   const isDark = current === "dark";
+
+  // Theme is resolved from cookie/system on the client only; render a stable
+  // placeholder during SSR and first paint to avoid a hydration mismatch.
+  if (!mounted) {
+    return <span className="w-5 h-5 block" aria-hidden="true" />;
+  }
 
   return (
     <button

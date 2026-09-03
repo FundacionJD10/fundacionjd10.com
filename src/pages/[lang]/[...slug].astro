@@ -30,12 +30,12 @@ const page = PAGES[pageId];
 const title = page.titles[locale];
 ---
 <BaseLayout title={title} lang={lang}>
-  <Header client:only="react" />
-  {pageId === 'home' && <HomePage client:only="react" />}
-  {pageId === 'about' && <AboutPage client:only="react" />}
-  {pageId === 'projects' && <ProjectsPage client:only="react" />}
-  {pageId === 'contact' && <ContactPage client:only="react" />}
-  {pageId === 'tax' && <TaxPage client:only="react" />}
-  {pageId === 'transparency' && <TransparencyPage client:only="react" />}
-  <Footer client:only="react" />
+  <Header client:load locale={locale} />
+  {pageId === 'home' && <HomePage client:load locale={locale} />}
+  {pageId === 'about' && <AboutPage client:load locale={locale} />}
+  {pageId === 'projects' && <ProjectsPage client:load locale={locale} />}
+  {pageId === 'contact' && <ContactPage client:load locale={locale} />}
+  {pageId === 'tax' && <TaxPage client:load locale={locale} />}
+  {pageId === 'transparency' && <TransparencyPage client:load locale={locale} />}
+  <Footer client:load locale={locale} />
 </BaseLayout>

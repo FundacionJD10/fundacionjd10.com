@@ -9,9 +9,10 @@ import { PAGES } from '@i18n/routes';
 // Client components pick the visitor's language (browser/cookie) at runtime.
 // Canonical points to /es/ so the localized URL is the one indexed.
 const title = PAGES.home.titles['es-419'];
+const locale = 'es-419';
 ---
 <BaseLayout title={title} lang="es" canonical="/es/">
-  <Header client:only="react" />
-  <HomePage client:only="react" />
-  <Footer client:only="react" />
+  <Header client:load locale={locale} />
+  <HomePage client:load locale={locale} />
+  <Footer client:load locale={locale} />
 </BaseLayout>

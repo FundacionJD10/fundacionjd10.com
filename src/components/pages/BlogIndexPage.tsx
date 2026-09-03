@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useTranslation } from "@i18n/useTranslation";
-import { useStore } from "@nanostores/react";
-import { localeStore } from "@i18n/store";
+import type { Locale } from "@i18n/store";
+import { LocaleProvider } from "@i18n/LocaleProvider";
 import { blogPosts } from "@content/blog/index";
 import { CATEGORIES } from "@types/blog";
 import { ArticleCard } from "@components/blog/ArticleCard";
 
-export function BlogIndexPage() {
-  const { t } = useTranslation("blog");
-  const locale = useStore(localeStore);
+export function BlogIndexPage({ locale }: { locale: Locale }) {
+  const { t } = useTranslation("blog", locale);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const filteredPosts = activeCategory
@@ -20,7 +19,8 @@ export function BlogIndexPage() {
   );
 
   return (
-    <main className="flex-1">
+    <LocaleProvider locale={locale}>
+      <main className="flex-1">
       {/* Hero */}
       <section className="bg-[var(--color-bg-accent)] text-white px-6 lg:px-12 pb-16 lg:pb-24 pt-32">
         <div className="max-w-[1800px] mx-auto">
@@ -76,6 +76,7 @@ export function BlogIndexPage() {
           )}
         </div>
       </section>
-    </main>
+      </main>
+    </LocaleProvider>
   );
 }

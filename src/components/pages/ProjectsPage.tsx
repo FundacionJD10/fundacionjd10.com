@@ -1,12 +1,9 @@
 import { useTranslation } from "@i18n/useTranslation";
 import type { Locale } from "@i18n/store";
-import { useStore } from "@nanostores/react";
-import { localeStore } from "@i18n/store";
 import { projects } from "@content/projects/data";
 
-export function ProjectsPage() {
-  const { t } = useTranslation("projects");
-  const locale = useStore(localeStore);
+export function ProjectsPage({ locale }: { locale: Locale }) {
+  const { t } = useTranslation("projects", locale);
 
   const statusLabel: Record<string, string> = {
     active: "● Activo",

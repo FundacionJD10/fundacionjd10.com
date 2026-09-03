@@ -39,10 +39,7 @@ export function ArticleCard({ post }: Props) {
         ))}
       </div>
       <h3 className="font-heading text-xl lg:text-2xl text-[var(--color-text)] mb-3 leading-tight">
-        <a
-          href={href}
-          className="hover:opacity-70 transition-opacity"
-        >
+        <a href={href} className="hover:opacity-70 transition-opacity">
           {post.title[locale]}
         </a>
       </h3>

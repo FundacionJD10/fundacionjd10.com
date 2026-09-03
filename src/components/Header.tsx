@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useStore } from "@nanostores/react";
 import { useTranslation } from "@i18n/useTranslation";
-import { localeStore } from "@i18n/store";
+import type { Locale } from "@i18n/store";
+import { LocaleProvider } from "@i18n/LocaleProvider";
 import { LOCALE_TO_LANG, localePath } from "@i18n/routes";
 import { LanguageSwitcher } from "@i18n/LanguageSwitcher";
 import { ThemeSwitcher } from "@theme/ThemeSwitcher";
@@ -16,9 +16,8 @@ const NAV_ITEMS = [
   { key: "nav_contact", pageId: "contact" },
 ] as const;
 
-export function Header() {
-  const { t } = useTranslation("common");
-  const locale = useStore(localeStore);
+export function Header({ locale }: { locale: Locale }) {
+  const { t } = useTranslation("common", locale);
   const lang = LOCALE_TO_LANG[locale];
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -38,13 +37,14 @@ export function Header() {
   }, [mobileOpen]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color] duration-300 ${
-        scrolled || mobileOpen
-          ? "bg-[var(--color-bg)] border-b border-[var(--color-border)]"
-          : "mix-blend-difference"
-      }`}
-    >
+    <LocaleProvider locale={locale}>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color] duration-300 ${
+          scrolled || mobileOpen
+            ? "bg-[var(--color-bg)] border-b border-[var(--color-border)]"
+            : "mix-blend-difference"
+        }`}
+      >
       <div className="mx-auto max-w-[1800px] px-6 lg:px-12">
         <div className="flex h-16 lg:h-20 items-center justify-between">
           <a
@@ -124,6 +124,7 @@ export function Header() {
           </nav>
         </div>
       )}
-    </header>
+      </header>
+    </LocaleProvider>
   );
 }

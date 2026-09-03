@@ -17,7 +17,7 @@ const locale = LANG_TO_LOCALE[lang as LangPrefix];
 const title = PAGES.blog.titles[locale];
 ---
 <BaseLayout title={title} lang={lang}>
-  <Header client:only="react" />
-  <BlogIndexPage client:only="react" />
-  <Footer client:only="react" />
+  <Header client:load locale={locale} />
+  <BlogIndexPage client:load locale={locale} />
+  <Footer client:load locale={locale} />
 </BaseLayout>

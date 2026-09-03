@@ -1,5 +1,5 @@
-import { useStore } from "@nanostores/react";
-import { localeStore, type Locale } from "./store";
+import { type Locale } from "./store";
+import { useLocale } from "./LocaleProvider";
 
 type Translations = Record<string, Record<string, string>>;
 
@@ -26,8 +26,9 @@ for (const [path, mod] of Object.entries(modules)) {
   }
 }
 
-export function useTranslation(namespace: string) {
-  const locale = useStore(localeStore);
+export function useTranslation(namespace: string, localeOverride?: Locale) {
+  const contextLocale = useLocale();
+  const locale = localeOverride ?? contextLocale;
 
   function t(key: string, replacements?: Record<string, string>): string {
     const value = translations[locale]?.[namespace]?.[key] ?? key;

@@ -1,16 +1,15 @@
-import { useStore } from "@nanostores/react";
 import { navigate } from "astro:transitions/client";
 import {
-  localeStore,
   setLocale,
   LOCALES,
   LOCALE_LABELS,
   type Locale,
 } from "./store";
+import { useLocale } from "./LocaleProvider";
 import { switchLocalePath } from "./routes";
 
 export function LanguageSwitcher() {
-  const current = useStore(localeStore);
+  const current = useLocale();
 
   function handleSwitch(locale: Locale) {
     setLocale(locale);
