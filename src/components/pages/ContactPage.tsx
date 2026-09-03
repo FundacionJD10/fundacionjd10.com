@@ -49,7 +49,7 @@ export function ContactPage() {
               {t("intro")}
             </p>
             <div className="space-y-4 text-sm text-[var(--color-text-muted)]">
-              <p>Bogotá, Colombia</p>
+              <p>Cúcuta, Colombia</p>
               <p>contacto@fundacionjd10.com</p>
             </div>
           </div>
