@@ -52,6 +52,11 @@ export function ProjectsPage() {
                 <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-6 max-w-[60ch]">
                   {project.description[locale]}
                 </p>
+                {project.details && (
+                  <p className="text-base text-[var(--color-text-secondary)] leading-relaxed mb-6 max-w-[65ch]">
+                    {project.details[locale]}
+                  </p>
+                )}
                 <div className="flex flex-wrap gap-3 mb-6">
                   {project.techStack.map((tech) => (
                     <span

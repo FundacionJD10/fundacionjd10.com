@@ -4,6 +4,7 @@ export interface Project {
   id: string;
   title: Record<Locale, string>;
   description: Record<Locale, string>;
+  details?: Record<Locale, string>;
   status: "active" | "completed" | "planned";
   techStack: string[];
   url?: string;
@@ -38,11 +39,19 @@ export const projects: Project[] = [
     },
     description: {
       "es-419":
-        'Un proyecto inspirado en "Uy qué heavy" que busca incentivar el contacto humano y las relaciones interpersonales a través de preguntas',
+        'Un proyecto inspirado en "Uy qué heavy" que busca incentivar el contacto humano y las relaciones interpersonales a través de preguntas.',
       "en-US":
-        'A project inspired by "Uy qué heavy" that seeks to encourage human contact and interpersonal relationships through questions',
+        'A project inspired by "Uy qué heavy" that seeks to encourage human contact and interpersonal relationships through questions.',
       "pt-BR":
-        'Um projeto inspirado em "Uy qué heavy" que busca incentivar o contato humano e os relacionamentos interpessoais através de perguntas',
+        'Um projeto inspirado em "Uy qué heavy" que busca incentivar o contato humano e os relacionamentos interpessoais através de perguntas.',
+    },
+    details: {
+      "es-419":
+        "La propuesta invita a volver a lo más básico de las relaciones humanas: conocerse de verdad, en profundidad, y crear vínculos duraderos. A través de preguntas guiadas, dos o más personas exploran quiénes son y qué las une. De forma opcional, el proceso puede acompañarse con el apoyo de un profesional, como un psicólogo, o de una persona de confianza que las participantes ya tengan como guía, según sus propias preferencias.",
+      "en-US":
+        "The project invites people back to the most basic part of human relationships: getting to know each other, deeply, and building lasting bonds. Through guided questions, two or more people explore who they are and what connects them. Optionally, the process can be supported by a professional, such as a psychologist, or by a trusted person the participants already rely on as a guide, according to their own preferences.",
+      "pt-BR":
+        "A proposta convida a voltar ao mais básico das relações humanas: conhecer-se de verdade, em profundidade, e criar vínculos duradouros. Por meio de perguntas guiadas, duas ou mais pessoas exploram quem são e o que as une. De forma opcional, o processo pode contar com o apoio de um profissional, como um psicólogo, ou de uma pessoa de confiança que as participantes já tenham como guia, conforme suas próprias preferências.",
     },
     status: "planned",
     techStack: ["TBD"],
@@ -56,11 +65,19 @@ export const projects: Project[] = [
     },
     description: {
       "es-419":
-        "Un proyecto que busca recopilar y organizar himnarios, letras y música de diferentes tradiciones religiosas y culturales.",
+        "Una aplicación web para digitalizar música y equipos clásicos en un formato moderno: reproducir música y mostrar letras con formato, a partir de obras de dominio público.",
       "en-US":
-        "A project that seeks to collect and organize hymnals, lyrics and music from different religious and cultural traditions.",
+        "A web app to digitalize classic music and hardware into a modern form factor: play music and display formatted lyrics, based on public domain works.",
       "pt-BR":
-        "Um projeto que busca coletar e organizar hinários, letras e músicas de diferentes tradições religiosas e culturais.",
+        "Um aplicativo web para digitalizar música e equipamentos clássicos em um formato moderno: reproduzir música e exibir letras formatadas, a partir de obras de domínio público.",
+    },
+    details: {
+      "es-419":
+        "Inspirado en el reproductor de himnarios de Gloria, este proyecto lleva la música y el hardware \u201cclásico\u201d a un formato moderno como aplicación web. Aunque parte de los himnarios, está pensado para cualquier tipo de música: permite importar archivos MIDI, letras y metadatos, y crear libremente desde la web, priorizando obras de dominio público.",
+      "en-US":
+        "Inspired by the Gloria hymnal player, this project brings \u201cclassic\u201d music and hardware into a modern web-app form factor. Although it starts from hymnals, it is meant for any kind of music: it lets you import MIDI files, lyrics and metadata, and create freely on the web, prioritizing public domain works.",
+      "pt-BR":
+        "Inspirado no reprodutor de hinários da Gloria, este projeto leva a música e o hardware \u201cclássico\u201d a um formato moderno como aplicativo web. Embora parta dos hinários, é pensado para qualquer tipo de música: permite importar arquivos MIDI, letras e metadados, e criar livremente na web, priorizando obras de domínio público.",
     },
     status: "planned",
     techStack: ["TBD"],
