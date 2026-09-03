@@ -18,6 +18,11 @@
   "value_responsibility_text": "Tools that significantly reduce work time or human effort must be used consciously, understanding that their use should not replace the human capacity for reasoning and analysis.",
   "value_transparency_title": "Transparency",
   "value_transparency_text": "Everything we do will be public knowledge, as long as no legal impediment, contractual, confidentiality, or privacy, prevents it.",
+  "team_title": "Our team",
+  "team_founder_name": "José Daniel Durán",
+  "team_founder_role": "Founder & CEO",
+  "team_founder_bio": "After more than two years working in data annotation for artificial intelligence model training —in the areas of code, quality, and content generation— he founded Fundación JD10 to promote the ethical and responsible use of AI and to develop free technology tools for the community.",
+  "team_photo_alt": "Photograph of José Daniel Durán",
   "cta_home": "Learn about the foundation",
   "cta_projects": "View our projects",
   "cta_blog": "Read the blog"

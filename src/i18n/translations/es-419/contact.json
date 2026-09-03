@@ -1,6 +1,13 @@
 {
   "page_title": "Contacto",
   "intro": "¿Tienes preguntas, propuestas o quieres colaborar? Escríbenos.",
+  "info_title": "Información de la organización",
+  "info_org_label": "Razón social",
+  "info_address_label": "Dirección",
+  "info_email_label": "Correo electrónico",
+  "info_charity_label": "NIT",
+  "info_founded_label": "Fecha de constitución",
+  "info_founded_value": "2 de julio de 2026",
   "form_name": "Nombre",
   "form_email": "Correo electrónico",
   "form_subject": "Asunto",

@@ -1,8 +1,10 @@
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "@i18n/useTranslation";
+import type { Locale } from "@i18n/store";
+import { ORGANIZATION, ORGANIZATION_ADDRESS } from "@content/organization";
 
-export function ContactPage() {
-  const { t } = useTranslation("contact");
+export function ContactPage({ locale }: { locale: Locale }) {
+  const { t } = useTranslation("contact", locale);
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
@@ -48,9 +50,53 @@ export function ContactPage() {
             <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed mb-8">
               {t("intro")}
             </p>
-            <div className="space-y-4 text-sm text-[var(--color-text-muted)]">
-              <p>Cúcuta, Colombia</p>
-              <p>contacto@fundacionjd10.com</p>
+            <div className="space-y-5 text-sm">
+              <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
+                {t("info_title")}
+              </p>
+              <address className="not-italic space-y-4">
+                <div>
+                  <p className="text-[var(--color-text-muted)]">
+                    {t("info_org_label")}
+                  </p>
+                  <p className="text-[var(--color-text)]">
+                    {ORGANIZATION.legalName}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[var(--color-text-muted)]">
+                    {t("info_address_label")}
+                  </p>
+                  <p className="text-[var(--color-text)]">
+                    {ORGANIZATION_ADDRESS}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[var(--color-text-muted)]">
+                    {t("info_charity_label")}
+                  </p>
+                  <p className="text-[var(--color-text)]">{ORGANIZATION.nit}</p>
+                </div>
+                <div>
+                  <p className="text-[var(--color-text-muted)]">
+                    {t("info_founded_label")}
+                  </p>
+                  <p className="text-[var(--color-text)]">
+                    {t("info_founded_value")}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-[var(--color-text-muted)]">
+                    {t("info_email_label")}
+                  </p>
+                  <a
+                    href={`mailto:${ORGANIZATION.email}`}
+                    className="text-[var(--color-text)] hover:opacity-70 transition-opacity"
+                  >
+                    {ORGANIZATION.email}
+                  </a>
+                </div>
+              </address>
             </div>
           </div>
 

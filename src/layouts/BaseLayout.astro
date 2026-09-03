@@ -2,6 +2,7 @@
 import { ViewTransitions } from 'astro:transitions';
 import ThemeScript from '@theme/ThemeScript.astro';
 import { switchLocalePath } from '@i18n/routes';
+import { ORGANIZATION } from '@content/organization';
 import '../styles/global.css';
 
 interface Props {
@@ -68,9 +69,28 @@ const xDefaultURL = new URL(withSlash(switchLocalePath(Astro.url.pathname, 'es-4
       "@context": "https://schema.org",
       "@type": "NGO",
       "name": "Fundación JD10",
+      "legalName": ORGANIZATION.legalName,
       "url": Astro.site?.toString(),
       "description": description,
-      "foundingDate": "2026",
+      "email": ORGANIZATION.email,
+      "taxID": ORGANIZATION.nit,
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "NIT",
+        "value": ORGANIZATION.nit,
+      },
+      "foundingDate": ORGANIZATION.foundingDate,
+      "founder": {
+        "@type": "Person",
+        "name": ORGANIZATION.founder,
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": ORGANIZATION.streetAddress,
+        "addressLocality": ORGANIZATION.city,
+        "addressRegion": ORGANIZATION.region,
+        "addressCountry": ORGANIZATION.countryCode,
+      },
       "areaServed": "Latin America",
     })} />
 

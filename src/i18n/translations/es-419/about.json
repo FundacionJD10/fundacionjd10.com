@@ -18,6 +18,11 @@
   "value_responsibility_text": "El uso de herramientas que reducen considerablemente el tiempo de trabajo o el esfuerzo humano deben ser usadas de manera consciente, entendiendo que su uso no debe reemplazar la capacidad humana de razonamiento y análisis.",
   "value_transparency_title": "Transparencia",
   "value_transparency_text": "Todo lo que se realice será de conocimiento público, siempre y cuando ningún impedimento legal (contractual, confidencialidad o privacidad) lo impida.",
+  "team_title": "Nuestro equipo",
+  "team_founder_name": "José Daniel Durán",
+  "team_founder_role": "Fundador y CEO",
+  "team_founder_bio": "Tras más de dos años trabajando en anotación de datos para el entrenamiento de modelos de inteligencia artificial —en las áreas de código, calidad y generación de contenido—, fundó la Fundación JD10 para promover el uso ético y responsable de la IA y desarrollar herramientas tecnológicas libres para la comunidad.",
+  "team_photo_alt": "Fotografía de José Daniel Durán",
   "cta_home": "Conoce la fundación",
   "cta_projects": "Ver nuestros proyectos",
   "cta_blog": "Leer el blog"

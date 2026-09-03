@@ -1,6 +1,13 @@
 {
   "page_title": "Contact",
   "intro": "Questions, proposals, or interested in collaborating? Get in touch.",
+  "info_title": "Organization information",
+  "info_org_label": "Legal name",
+  "info_address_label": "Address",
+  "info_email_label": "Email",
+  "info_charity_label": "Tax ID (NIT)",
+  "info_founded_label": "Date of incorporation",
+  "info_founded_value": "July 2nd, 2026",
   "form_name": "Name",
   "form_email": "Email",
   "form_subject": "Subject",

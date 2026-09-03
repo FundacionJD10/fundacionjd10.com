@@ -9,8 +9,9 @@ import {
   getEntryTotal,
   type ExpenseCategory,
 } from "@content/expenses/data";
-import { useStore } from "@nanostores/react";
-import { localeStore } from "@i18n/store";
+import type { Locale } from "@i18n/store";
+import { LocaleProvider } from "@i18n/LocaleProvider";
+import { ORGANIZATION } from "@content/organization";
 
 function ExpenseIcon({ type }: { type: ExpenseCategory["icon"] }) {
   const iconClass = "w-5 h-5 text-[var(--color-text-muted)]";
@@ -99,9 +100,8 @@ function ExpenseIcon({ type }: { type: ExpenseCategory["icon"] }) {
   }
 }
 
-export function TransparencyPage() {
-  const { t } = useTranslation("transparency");
-  const locale = useStore(localeStore);
+export function TransparencyPage({ locale }: { locale: Locale }) {
+  const { t } = useTranslation("transparency", locale);
   const [viewDoc, setViewDoc] = useState<{
     url: string;
     fileName: string;
@@ -136,7 +136,8 @@ export function TransparencyPage() {
   };
 
   return (
-    <main className="flex-1">
+    <LocaleProvider locale={locale}>
+      <main className="flex-1">
       {/* Hero */}
       <section className="bg-[var(--color-bg-accent)] text-white px-6 lg:px-12 pb-16 lg:pb-24 pt-32">
         <div className="max-w-[1800px] mx-auto">
@@ -145,6 +146,9 @@ export function TransparencyPage() {
           </h1>
           <p className="mt-6 text-lg text-white/70 max-w-[50ch]">
             {t("intro")}
+          </p>
+          <p className="mt-4 text-sm text-white/60">
+            {ORGANIZATION.legalName} · NIT: {ORGANIZATION.nit}
           </p>
         </div>
       </section>
@@ -344,6 +348,7 @@ export function TransparencyPage() {
           onClose={() => setViewDoc(null)}
         />
       )}
-    </main>
+      </main>
+    </LocaleProvider>
   );
 }

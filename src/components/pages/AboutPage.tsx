@@ -1,11 +1,9 @@
-import { useStore } from "@nanostores/react";
 import { useTranslation } from "@i18n/useTranslation";
-import { localeStore } from "@i18n/store";
+import type { Locale } from "@i18n/store";
 import { LOCALE_TO_LANG, localePath } from "@i18n/routes";
 
-export function AboutPage() {
-  const { t } = useTranslation("about");
-  const locale = useStore(localeStore);
+export function AboutPage({ locale }: { locale: Locale }) {
+  const { t } = useTranslation("about", locale);
   const lang = LOCALE_TO_LANG[locale];
 
   return (
@@ -141,6 +139,40 @@ export function AboutPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <section className="py-section px-6 lg:px-12 border-t border-[var(--color-border)]">
+        <div className="max-w-[1800px] mx-auto grid lg:grid-cols-[1fr_3fr] gap-8 lg:gap-16">
+          <div>
+            <h2 className="font-heading text-xl text-[var(--color-text)] lg:sticky lg:top-28">
+              {t("team_title")}
+            </h2>
+          </div>
+          <div className="max-w-[65ch]">
+            <div className="flex flex-col sm:flex-row gap-6 lg:gap-10 items-start">
+              {/* Photo placeholder */}
+              <div className="shrink-0">
+                <div className="w-32 h-32 lg:w-40 lg:h-40 rounded-full bg-[var(--color-bg-accent)]/10 border border-[var(--color-border)] flex items-center justify-center overflow-hidden">
+                  <span className="font-heading text-3xl lg:text-4xl text-[var(--color-text-muted)]">
+                    JD
+                  </span>
+                </div>
+              </div>
+              <div>
+                <h3 className="font-heading text-xl lg:text-2xl text-[var(--color-text)]">
+                  {t("team_founder_name")}
+                </h3>
+                <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-[var(--color-text-muted)] mt-1 mb-4">
+                  {t("team_founder_role")}
+                </p>
+                <p className="text-base lg:text-lg text-[var(--color-text-secondary)] leading-relaxed">
+                  {t("team_founder_bio")}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,11 +1,10 @@
-import { useStore } from "@nanostores/react";
 import { useTranslation } from "@i18n/useTranslation";
-import { localeStore } from "@i18n/store";
+import type { Locale } from "@i18n/store";
 import { LOCALE_TO_LANG, localePath } from "@i18n/routes";
+import { ORGANIZATION, ORGANIZATION_ADDRESS } from "@content/organization";
 
-export function Footer() {
-  const { t } = useTranslation("common");
-  const locale = useStore(localeStore);
+export function Footer({ locale }: { locale: Locale }) {
+  const { t } = useTranslation("common", locale);
   const lang = LOCALE_TO_LANG[locale];
   const currentYear = new Date().getFullYear();
   const foundingYear = 2026;
@@ -28,6 +27,31 @@ export function Footer() {
                 className="h-20 w-auto invert dark:invert-0"
               />
             </p>
+            <address className="not-italic text-sm text-[var(--color-text-secondary)] leading-relaxed space-y-1">
+              <p className="text-[var(--color-text)] font-medium">
+                {ORGANIZATION.legalName}
+              </p>
+              <p>
+                <span className="text-[var(--color-text-muted)]">
+                  {t("footer_address_label")}:{" "}
+                </span>
+                {ORGANIZATION_ADDRESS}
+              </p>
+              <p>
+                <span className="text-[var(--color-text-muted)]">
+                  {t("footer_charity_label")}:{" "}
+                </span>
+                {ORGANIZATION.nit}
+              </p>
+              <p>
+                <a
+                  href={`mailto:${ORGANIZATION.email}`}
+                  className="hover:text-[var(--color-text)] transition-colors"
+                >
+                  {ORGANIZATION.email}
+                </a>
+              </p>
+            </address>
           </div>
 
           {/* Navigation */}
@@ -86,7 +110,7 @@ export function Footer() {
             © {yearDisplay} Fundación JD10. {t("footer_rights")}
           </p>
           <p className="text-xs text-[var(--color-text-muted)]">
-            NIT: 902.081.518-1
+            {t("footer_charity_label")}: {ORGANIZATION.nit}
           </p>
         </div>
       </div>

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useTranslation } from "@i18n/useTranslation";
+import type { Locale } from "@i18n/store";
+import { LocaleProvider } from "@i18n/LocaleProvider";
 import { DocumentViewer } from "@components/DocumentViewer";
+import { ORGANIZATION } from "@content/organization";
 
 interface Document {
   sectionKey: string;
@@ -39,15 +42,16 @@ const SECTIONS = [
   "section_bank",
 ] as const;
 
-export function TaxPage() {
-  const { t } = useTranslation("tax");
+export function TaxPage({ locale }: { locale: Locale }) {
+  const { t } = useTranslation("tax", locale);
   const [viewDoc, setViewDoc] = useState<{
     url: string;
     fileName: string;
   } | null>(null);
 
   return (
-    <main className="flex-1">
+    <LocaleProvider locale={locale}>
+      <main className="flex-1">
       {/* Hero */}
       <section className="bg-[var(--color-bg-accent)] text-white px-6 lg:px-12 pb-16 lg:pb-24 pt-32">
         <div className="max-w-[1800px] mx-auto">
@@ -56,6 +60,9 @@ export function TaxPage() {
           </h1>
           <p className="mt-6 text-lg text-white/70 max-w-[50ch]">
             {t("intro")}
+          </p>
+          <p className="mt-4 text-sm text-white/60">
+            {ORGANIZATION.legalName} · NIT: {ORGANIZATION.nit}
           </p>
         </div>
       </section>
@@ -118,6 +125,7 @@ export function TaxPage() {
           onClose={() => setViewDoc(null)}
         />
       )}
-    </main>
+      </main>
+    </LocaleProvider>
   );
 }
