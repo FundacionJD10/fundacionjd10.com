@@ -21,23 +21,33 @@ export function VideoEmbed({ url, title = "Video" }: Props) {
   );
 }
 
+const YOUTUBE_HOSTS = new Set([
+  "youtube.com",
+  "www.youtube.com",
+  "m.youtube.com",
+]);
+const YOUTUBE_SHORT_HOSTS = new Set(["youtu.be", "www.youtu.be"]);
+const VIMEO_HOSTS = new Set([
+  "vimeo.com",
+  "www.vimeo.com",
+  "player.vimeo.com",
+]);
+
 function getEmbedUrl(url: string): string | null {
   try {
     const parsed = new URL(url);
+    const host = parsed.hostname.toLowerCase();
 
     // YouTube
-    if (
-      parsed.hostname.includes("youtube.com") ||
-      parsed.hostname.includes("youtu.be")
-    ) {
-      const videoId = parsed.hostname.includes("youtu.be")
+    if (YOUTUBE_HOSTS.has(host) || YOUTUBE_SHORT_HOSTS.has(host)) {
+      const videoId = YOUTUBE_SHORT_HOSTS.has(host)
         ? parsed.pathname.slice(1)
         : parsed.searchParams.get("v");
       if (videoId) return `https://www.youtube-nocookie.com/embed/${videoId}`;
     }
 
     // Vimeo
-    if (parsed.hostname.includes("vimeo.com")) {
+    if (VIMEO_HOSTS.has(host)) {
       const id = parsed.pathname.split("/").filter(Boolean).pop();
       if (id) return `https://player.vimeo.com/video/${id}`;
     }
