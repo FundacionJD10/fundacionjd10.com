@@ -2,13 +2,15 @@ import { useState } from "react";
 import { useTranslation } from "@i18n/useTranslation";
 import { DocumentViewer } from "@components/DocumentViewer";
 import {
-  EXPENSE_CATEGORIES,
-  formatCOP,
-  formatMonth,
-  getCategoryTotal,
-  getEntryTotal,
+  getCategoryExpenses,
   type ExpenseCategory,
 } from "@content/expenses/data";
+import {
+  computeLedger,
+  formatCOPExact,
+  formatTransactionDate,
+  getCurrentBalance,
+} from "@content/bank/transactions";
 import type { Locale } from "@i18n/store";
 import { LocaleProvider } from "@i18n/LocaleProvider";
 import { ORGANIZATION } from "@content/organization";
@@ -107,6 +109,22 @@ export function TransparencyPage({ locale }: { locale: Locale }) {
     fileName: string;
   } | null>(null);
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [expandedTx, setExpandedTx] = useState<string | null>(null);
+
+  const localeMap: Record<string, string> = {
+    "es-419": "es-CO",
+    "en-US": "en-US",
+    "pt-BR": "pt-BR",
+  };
+  const dateLocale = localeMap[locale] || "es-CO";
+
+  // Ledger newest-first for display; balance is computed chronologically.
+  const ledger = [...computeLedger()].reverse();
+  const currentBalance = getCurrentBalance();
+
+  // Operational expenses are derived from the ledger outflows (single source of truth).
+  const categoryExpenses = getCategoryExpenses();
+
 
   const DOCUMENTS = [
     {
@@ -129,12 +147,6 @@ export function TransparencyPage({ locale }: { locale: Locale }) {
     "section_statutes",
   ] as const;
 
-  const localeMap: Record<string, string> = {
-    "es-419": "es-CO",
-    "en-US": "en-US",
-    "pt-BR": "pt-BR",
-  };
-
   return (
     <LocaleProvider locale={locale}>
       <main className="flex-1">
@@ -153,13 +165,161 @@ export function TransparencyPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      {/* Bank Ledger Section */}
+      <section className="py-section px-6 lg:px-12">
+        <div className="max-w-[1800px] mx-auto">
+          <div className="grid lg:grid-cols-[1fr_3fr] gap-8 lg:gap-16">
+            <div className="flex items-baseline gap-4">
+              <span className="font-mono text-sm text-[var(--color-text-muted)]">
+                00
+              </span>
+              <div>
+                <h2 className="font-heading text-xl text-[var(--color-text)]">
+                  {t("section_bank")}
+                </h2>
+                <p className="mt-2 text-sm text-[var(--color-text-muted)] max-w-[30ch]">
+                  {t("section_bank_intro")}
+                </p>
+                <div className="mt-6 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-subtle)] px-4 py-3">
+                  <p className="text-xs uppercase tracking-wide text-[var(--color-text-muted)]">
+                    {t("current_balance")}
+                  </p>
+                  <p className="mt-1 font-mono text-lg text-[var(--color-text)]">
+                    {formatCOPExact(currentBalance)}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div>
+              {/* Column headers */}
+              <div className="hidden sm:grid grid-cols-[1fr_auto_auto_auto] gap-6 px-4 pb-2 text-xs uppercase tracking-wide text-[var(--color-text-muted)] border-b border-[var(--color-border)]">
+                <span>{t("col_description")}</span>
+                <span className="text-right w-36 whitespace-nowrap">{t("col_in")}</span>
+                <span className="text-right w-36 whitespace-nowrap">{t("col_out")}</span>
+                <span className="text-right w-44 whitespace-nowrap">{t("col_balance")}</span>
+              </div>
+              <ul className="divide-y divide-[var(--color-border)]">
+                {ledger.map(({ transaction, inflow, outflow, balanceAfter }) => {
+                  const hasFees =
+                    !!transaction.fees && transaction.fees.length > 0;
+                  const isExpanded = expandedTx === transaction.id;
+
+                  return (
+                    <li key={transaction.id}>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          hasFees &&
+                          setExpandedTx(isExpanded ? null : transaction.id)
+                        }
+                        className={`w-full px-4 py-3 grid grid-cols-[1fr_auto] sm:grid-cols-[1fr_auto_auto_auto] gap-x-6 gap-y-1 items-center text-left ${
+                          hasFees
+                            ? "hover:bg-[var(--color-bg-subtle)] transition-colors cursor-pointer"
+                            : "cursor-default"
+                        }`}
+                      >
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm text-[var(--color-text)] truncate">
+                              {t(transaction.descriptionKey)}
+                            </span>
+                            {hasFees && (
+                              <svg
+                                className={`w-4 h-4 shrink-0 text-[var(--color-text-muted)] transition-transform ${
+                                  isExpanded ? "rotate-180" : ""
+                                }`}
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={1.5}
+                                  d="M19 9l-7 7-7-7"
+                                />
+                              </svg>
+                            )}
+                          </div>
+                          <span className="text-xs text-[var(--color-text-muted)]">
+                            {formatTransactionDate(transaction.date, dateLocale)}
+                          </span>
+                        </div>
+                        {/* Mobile: signed amount */}
+                        <span
+                          className={`sm:hidden text-sm font-mono text-right whitespace-nowrap ${
+                            inflow > 0
+                              ? "text-green-600 dark:text-green-400"
+                              : "text-[var(--color-text)]"
+                          }`}
+                        >
+                          {inflow > 0
+                            ? `+${formatCOPExact(inflow)}`
+                            : `−${formatCOPExact(outflow)}`}
+                        </span>
+                        {/* Desktop: in / out / balance columns */}
+                        <span className="hidden sm:block text-sm font-mono text-right w-36 whitespace-nowrap text-green-600 dark:text-green-400">
+                          {inflow > 0 ? `+${formatCOPExact(inflow)}` : ""}
+                        </span>
+                        <span className="hidden sm:block text-sm font-mono text-right w-36 whitespace-nowrap text-[var(--color-text)]">
+                          {outflow > 0 ? `−${formatCOPExact(outflow)}` : ""}
+                        </span>
+                        <span className="hidden sm:block text-sm font-mono text-right w-44 whitespace-nowrap text-[var(--color-text-muted)]">
+                          {formatCOPExact(balanceAfter)}
+                        </span>
+                      </button>
+
+                      {hasFees && isExpanded && (
+                        <div className="px-4 pb-3 sm:pl-4">
+                          <ul className="ml-1 space-y-1 border-l border-[var(--color-border)] pl-4">
+                            <li className="flex items-center gap-3 text-xs">
+                              <span className="text-[var(--color-text-muted)]">
+                                {t(`${transaction.descriptionKey}_base`)}
+                              </span>
+                              <span className="ml-auto font-mono text-[var(--color-text-muted)]/90">
+                                −{formatCOPExact(Math.abs(transaction.amount))}
+                              </span>
+                            </li>
+                            {transaction.fees!.map((fee) => (
+                              <li
+                                key={fee.nameKey}
+                                className="flex items-center gap-3 text-xs"
+                              >
+                                <span className="text-[var(--color-text-muted)]">
+                                  {t(fee.nameKey)}
+                                </span>
+                                <span className="ml-auto font-mono text-[var(--color-text-muted)]/90">
+                                  −{formatCOPExact(fee.amount)}
+                                </span>
+                              </li>
+                            ))}
+                            <li className="flex items-center gap-3 text-xs pt-1 border-t border-[var(--color-border)]">
+                              <span className="text-[var(--color-text-muted)] font-medium">
+                                {t("col_out")}
+                              </span>
+                              <span className="ml-auto font-mono text-[var(--color-text)]">
+                                −{formatCOPExact(outflow)}
+                              </span>
+                            </li>
+                          </ul>
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Operational Expenses Section */}
       <section className="py-section px-6 lg:px-12 bg-[var(--color-bg-subtle)]">
         <div className="max-w-[1800px] mx-auto">
           <div className="grid lg:grid-cols-[1fr_3fr] gap-8 lg:gap-16">
             <div className="flex items-baseline gap-4">
               <span className="font-mono text-sm text-[var(--color-text-muted)]">
-                00
+                01
               </span>
               <div>
                 <h2 className="font-heading text-xl text-[var(--color-text)]">
@@ -171,10 +331,9 @@ export function TransparencyPage({ locale }: { locale: Locale }) {
               </div>
             </div>
             <div className="space-y-4">
-              {EXPENSE_CATEGORIES.map((category) => {
+              {categoryExpenses.map(({ category, total, items }) => {
                 const isExpanded = expandedCategory === category.id;
-                const total = getCategoryTotal(category);
-                const hasEntries = category.entries.length > 0;
+                const hasItems = items.length > 0;
 
                 return (
                   <div
@@ -197,9 +356,9 @@ export function TransparencyPage({ locale }: { locale: Locale }) {
                           {t(category.descriptionKey)}
                         </p>
                       </div>
-                      {hasEntries && (
-                        <span className="text-sm font-mono text-[var(--color-text-muted)]">
-                          {t("total")}: {formatCOP(total)}
+                      {hasItems && (
+                        <span className="text-sm font-mono text-[var(--color-text-muted)] whitespace-nowrap">
+                          {t("total")}: {formatCOPExact(total)}
                         </span>
                       )}
                       <svg
@@ -219,69 +378,55 @@ export function TransparencyPage({ locale }: { locale: Locale }) {
                       </svg>
                     </button>
 
-                    {/* Monthly Breakdown */}
+                    {/* Contributing line items (derived from the ledger) */}
                     {isExpanded && (
                       <div className="border-t border-[var(--color-border)] px-6 py-4">
-                        {!hasEntries ? (
+                        {!hasItems ? (
                           <p className="text-[var(--color-text-muted)] italic text-sm">
                             {t("no_entries")}
                           </p>
                         ) : (
                           <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-[var(--color-text-muted)] uppercase tracking-wide">
-                              {t("monthly_breakdown")}
-                            </h4>
                             <ul className="space-y-2">
-                              {category.entries.map((entry, entryIndex) => (
+                              {items.map((item) => (
                                 <li
-                                  key={`${entry.month}-${entryIndex}`}
-                                  className="py-2 border-b border-[var(--color-border)] last:border-b-0"
+                                  key={item.id}
+                                  className="flex items-center gap-4 py-2 border-b border-[var(--color-border)] last:border-b-0"
                                 >
-                                  <div className="flex items-center gap-4">
-                                    <span className="text-sm text-[var(--color-text)] capitalize">
-                                      {formatMonth(
-                                        entry.month,
-                                        localeMap[locale] || "es-CO",
+                                  <div className="min-w-0">
+                                    <span className="block text-sm text-[var(--color-text)]">
+                                      {t(item.labelKey)}
+                                    </span>
+                                    <span className="block text-xs text-[var(--color-text-muted)]">
+                                      {formatTransactionDate(
+                                        item.date,
+                                        dateLocale,
                                       )}
                                     </span>
-                                    <span className="text-sm font-mono text-[var(--color-text-muted)] ml-auto">
-                                      {formatCOP(getEntryTotal(entry))}
-                                    </span>
-                                    {entry.receiptUrl && (
-                                      <button
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          setViewDoc({
-                                            url: entry.receiptUrl!,
-                                            fileName: `${category.id}-${entry.month}.pdf`,
-                                          });
-                                        }}
-                                        className="text-xs font-medium text-[var(--color-text)] hover:opacity-70 transition-opacity"
-                                      >
-                                        {t("view_receipt")} →
-                                      </button>
-                                    )}
                                   </div>
-                                  {entry.detailItems && entry.detailItems.length > 0 && (
-                                    <ul className="mt-2 ml-5 space-y-1">
-                                      {entry.detailItems.map((item, itemIndex) => (
-                                        <li
-                                          key={`${entry.month}-${item.nameKey}-${itemIndex}`}
-                                          className="flex items-center gap-3 text-xs"
-                                        >
-                                          <span className="text-[var(--color-text-muted)]">
-                                            {t(item.nameKey)}
-                                          </span>
-                                          <span className="ml-auto font-mono text-[var(--color-text-muted)]/90">
-                                            {formatCOP(item.amount)}
-                                          </span>
-                                        </li>
-                                      ))}
-                                    </ul>
+                                  <span className="ml-auto text-sm font-mono text-[var(--color-text-muted)] whitespace-nowrap">
+                                    {formatCOPExact(item.amount)}
+                                  </span>
+                                  {item.receiptUrl && (
+                                    <button
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setViewDoc({
+                                          url: item.receiptUrl!,
+                                          fileName: `${item.transactionId}.pdf`,
+                                        });
+                                      }}
+                                      className="text-xs font-medium text-[var(--color-text)] hover:opacity-70 transition-opacity whitespace-nowrap"
+                                    >
+                                      {t("view_receipt")} →
+                                    </button>
                                   )}
                                 </li>
                               ))}
                             </ul>
+                            <p className="text-xs text-[var(--color-text-muted)]/80">
+                              {t("expenses_ledger_note")}
+                            </p>
                           </div>
                         )}
                       </div>
