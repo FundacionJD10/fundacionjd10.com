@@ -14,7 +14,8 @@ import { BANK_TRANSACTIONS } from "@content/bank/transactions";
 export type ExpenseCategoryId =
   | "employee-assistant"
   | "internet"
-  | "bank-account";
+  | "bank-account"
+  | "materials";
 
 export interface ExpenseCategory {
   /** Unique identifier, referenced by `BankTransaction.category` */
@@ -45,6 +46,12 @@ export const EXPENSE_CATEGORIES: ExpenseCategory[] = [
     nameKey: "expense_bank_account",
     descriptionKey: "expense_bank_account_desc",
     icon: "bank",
+  },
+  {
+    id: "materials",
+    nameKey: "expense_materials",
+    descriptionKey: "expense_materials_desc",
+    icon: "other",
   },
 ];
 
