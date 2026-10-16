@@ -72,3 +72,21 @@
     color: var(--color-primary-100);
   }
 }
+
+/* Fundación JD10 logo: draw-in and hover redraw (see components/Logo.tsx) */
+.jd10-stroke {
+  fill: none;
+  stroke: #fff;
+  /* Wide enough to cover the letters, narrow enough not to touch the D stem early. */
+  stroke-width: 114;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 1;
+}
+/* Hidden until its draw-in starts: the header on a visit's first page, the footer until it scrolls into view. */
+html.jd10-intro .jd10-mark[data-intro="load"] .jd10-stroke,
+html.jd10-intro .jd10-mark[data-intro="load"] .jd10-word,
+.jd10-mark.jd10-waiting .jd10-stroke,
+.jd10-mark.jd10-waiting .jd10-word {
+  opacity: 0;
+}

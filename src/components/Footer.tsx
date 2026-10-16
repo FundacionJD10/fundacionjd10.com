@@ -2,6 +2,7 @@ import { useTranslation } from "@i18n/useTranslation";
 import type { Locale } from "@i18n/store";
 import { LOCALE_TO_LANG, localePath } from "@i18n/routes";
 import { ORGANIZATION, ORGANIZATION_ADDRESS } from "@content/organization";
+import { Logo } from "@components/Logo";
 
 export function Footer({ locale }: { locale: Locale }) {
   const { t } = useTranslation("common", locale);
@@ -21,11 +22,7 @@ export function Footer({ locale }: { locale: Locale }) {
           {/* Brand column */}
           <div className="lg:col-span-2">
             <p className="font-heading text-3xl lg:text-4xl text-[var(--color-text)] mb-4">
-              <img
-                src="/logo/footer.png"
-                alt="Fundación JD10"
-                className="h-20 w-auto invert dark:invert-0"
-              />
+              <Logo intro="view" className="h-20 w-auto" />
             </p>
             <address className="not-italic text-sm text-[var(--color-text-secondary)] leading-relaxed space-y-1">
               <p className="text-[var(--color-text)] font-medium">

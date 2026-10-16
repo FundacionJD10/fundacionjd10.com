@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import ThemeScript from '@theme/ThemeScript.astro';
+import { LOGO_INTRO_SCRIPT } from '@components/Logo';
 import { switchLocalePath } from '@i18n/routes';
 import { ORGANIZATION } from '@content/organization';
 import '../styles/global.css';
@@ -95,6 +96,7 @@ const xDefaultURL = new URL(withSlash(switchLocalePath(Astro.url.pathname, 'es-4
     })} />
 
     <ViewTransitions />
+    <script is:inline set:html={LOGO_INTRO_SCRIPT} />
     <ThemeScript />
     <title>{title}</title>
   </head>

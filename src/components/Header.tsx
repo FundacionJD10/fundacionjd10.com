@@ -5,6 +5,7 @@ import { LocaleProvider } from "@i18n/LocaleProvider";
 import { LOCALE_TO_LANG, localePath } from "@i18n/routes";
 import { LanguageSwitcher } from "@i18n/LanguageSwitcher";
 import { ThemeSwitcher } from "@theme/ThemeSwitcher";
+import { Logo } from "@components/Logo";
 
 const NAV_ITEMS = [
   { key: "nav_home", pageId: "home" },
@@ -53,13 +54,7 @@ export function Header({ locale }: { locale: Locale }) {
               scrolled || mobileOpen ? "text-[var(--color-text)]" : "text-white"
             }`}
           >
-            <img
-              src="/logo/navbar.png"
-              alt="Fundación JD10"
-              className={`h-8 lg:h-10 ${
-                scrolled || mobileOpen ? "invert dark:invert-0" : ""
-              }`}
-            />
+            <Logo intro="load" className="h-8 lg:h-10" />
           </a>
 
           <nav className="hidden lg:flex items-center gap-8">
