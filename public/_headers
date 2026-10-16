@@ -1,6 +1,6 @@
-# Content-hashed build assets never change under the same URL — cache aggressively.
-/_astro/*
-  Cache-Control: public, max-age=31536000, immutable
+# Build assets (/_astro/*) keep the Pages default (revalidate on every use). A
+# long "immutable" cache let the edge keep a copy of the home page served for a
+# script requested mid-deploy, which broke the header until purged.
 
 # Static images/icons — cache for a day, revalidate after.
 /logo/*
