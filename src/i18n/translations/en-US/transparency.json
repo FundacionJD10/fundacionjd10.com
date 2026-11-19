@@ -30,6 +30,8 @@
   "bank_tx_social_security": "Social security contributions",
   "bank_tx_internet": "Internet service payment (Comcel)",
   "bank_tx_hymnal_purchase": "Purchase of Fe y Alabanza hymnals (lyrics) – Asociación El Sembrador",
+  "bank_tx_debit_card_fee": "Debit card fee",
+  "bank_tx_debit_card_fee_base": "Card maintenance fee",
   "bank_fee_vat": "VAT",
   "bank_fee_nequi_service": "Payment service fee (Nequi)",
   "bank_fee_automatic_payment_vat": "VAT on automatic payment",

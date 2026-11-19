@@ -30,6 +30,8 @@
   "bank_tx_social_security": "Aportes de seguridad social",
   "bank_tx_internet": "Pago servicio de internet (Comcel)",
   "bank_tx_hymnal_purchase": "Compra de himnarios Fe y Alabanza (letras) – Asociación El Sembrador",
+  "bank_tx_debit_card_fee": "Cuota de manejo tarjeta débito",
+  "bank_tx_debit_card_fee_base": "Cuota de manejo",
   "bank_fee_vat": "IVA",
   "bank_fee_nequi_service": "Comisión servicio de pago (Nequi)",
   "bank_fee_automatic_payment_vat": "IVA pago automático",
