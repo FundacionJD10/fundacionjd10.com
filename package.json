@@ -11,12 +11,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.10",
-    "@astrojs/react": "^4.2.0",
-    "@astrojs/sitemap": "^3.3.0",
-    "@astrojs/tailwind": "^6.0.0",
+    "@astrojs/check": "^0.9.12",
+    "@astrojs/react": "^7.1.9",
+    "@astrojs/sitemap": "^3.7.6",
     "@nanostores/react": "^0.8.4",
-    "astro": "^5.7.0",
+    "astro": "^7.4.13",
     "nanostores": "^0.11.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -24,6 +23,7 @@
   "devDependencies": {
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "autoprefixer": "^10.7.0",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.9.3"
   }

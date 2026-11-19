@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import ThemeScript from '@theme/ThemeScript.astro';
 import { LOGO_INTRO_SCRIPT } from '@components/Logo';
 import { switchLocalePath } from '@i18n/routes';
@@ -95,7 +95,7 @@ const xDefaultURL = new URL(withSlash(switchLocalePath(Astro.url.pathname, 'es-4
       "areaServed": "Latin America",
     })} />
 
-    <ViewTransitions />
+    <ClientRouter />
     <script is:inline set:html={LOGO_INTRO_SCRIPT} />
     <ThemeScript />
     <title>{title}</title>
