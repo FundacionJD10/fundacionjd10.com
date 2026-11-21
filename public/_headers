@@ -5,5 +5,7 @@
 # Static images/icons — cache for a day, revalidate after.
 /logo/*
   Cache-Control: public, max-age=86400
+/projects/*
+  Cache-Control: public, max-age=86400
 /favicon.ico
   Cache-Control: public, max-age=86400

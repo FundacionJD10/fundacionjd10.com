@@ -5,10 +5,11 @@ import { projects } from "@content/projects/data";
 export function ProjectsPage({ locale }: { locale: Locale }) {
   const { t } = useTranslation("projects", locale);
 
+  // In the page's language (they were in Spanish on every language's page).
   const statusLabel: Record<string, string> = {
-    active: "● Activo",
-    completed: "✓ Completo",
-    planned: "○ Planeado",
+    active: `● ${t("status_active")}`,
+    completed: `✓ ${t("status_completed")}`,
+    planned: `○ ${t("status_planned")}`,
   };
 
   return (
@@ -53,6 +54,17 @@ export function ProjectsPage({ locale }: { locale: Locale }) {
                   <p className="text-base text-[var(--color-text-secondary)] leading-relaxed mb-6 max-w-[65ch]">
                     {project.details[locale]}
                   </p>
+                )}
+                {project.image && (
+                  <figure className="mb-6 max-w-3xl overflow-hidden border border-[var(--color-border)]">
+                    <img
+                      src={project.image.src}
+                      alt={project.image.alt[locale]}
+                      className="block w-full h-auto"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </figure>
                 )}
                 <div className="flex flex-wrap gap-3 mb-6">
                   {project.techStack.map((tech) => (
