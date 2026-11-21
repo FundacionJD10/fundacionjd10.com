@@ -16,9 +16,9 @@ export const projects: Project[] = [
   {
     id: "oye-es-enserio",
     title: {
-      "es-419": "Oye, es en serio",
-      "en-US": "Oye, es en serio",
-      "pt-BR": "Oye, es en serio",
+      "es-419": "Oye, es en serio / Oye, ¿es en serio? / Oye, ¡es en serio!",
+      "en-US": "Hey, it's serious / Hey, is it serious? / Hey, it's serious!",
+      "pt-BR": "Ei, é sério / Ei, é sério? / Ei, é sério!",
     },
     description: {
       "es-419":
@@ -90,28 +90,39 @@ export const projects: Project[] = [
   {
     id: "church-management-system",
     title: {
-      "es-419": "Sistema de gestión para iglesias (ChMS)",
-      "en-US": "Church management system (ChMS)",
-      "pt-BR": "Sistema de gestão para igrejas (ChMS)",
+      "es-419": "Casa de mi Señor: sistema de gestión para iglesias (ChMS)",
+      "en-US": "Casa de mi Señor: church management system (ChMS)",
+      "pt-BR": "Casa de mi Señor: sistema de gestão para igrejas (ChMS)",
     },
     description: {
       "es-419":
-        "Un panel para que el equipo de una iglesia cuide de su congregación: miembros y familias, eventos y asistencia, prédicas y reportes.",
+        "Un panel para que el equipo de la iglesia Casa de mi Señor cuide de su congregación: miembros y familias, eventos y asistencia, prédicas y reportes.",
       "en-US":
-        "A panel for a church's team to care for its congregation: members and families, events and attendance, sermons and reports.",
+        "A panel for the team of the Casa de mi Señor church to care for its congregation: members and families, events and attendance, sermons and reports.",
       "pt-BR":
-        "Um painel para a equipe de uma igreja cuidar da sua congregação: membros e famílias, eventos e frequência, pregações e relatórios.",
+        "Um painel para a equipe da igreja Casa de mi Señor cuidar da sua congregação: membros e famílias, eventos e frequência, pregações e relatórios.",
     },
     details: {
       "es-419":
-        "Cada persona del equipo ve y edita solo lo que su rol le permite. Los datos de los miembros son de la iglesia y se tratan con cuidado: por eso aquí no mostramos capturas.",
+        "Cada persona del equipo ve y edita solo lo que su rol le permite, y los datos de los miembros se tratan con cuidado. Desde el mismo panel se publica el sitio de la iglesia, con sus prédicas, su agenda y sus noticias.",
       "en-US":
-        "Each team member sees and edits only what their role allows. Members' data belongs to the church and is handled with care, which is why we show no screenshots here.",
+        "Each team member sees and edits only what their role allows, and members' data is handled with care. The same panel publishes the church's website, with its sermons, calendar and news.",
       "pt-BR":
-        "Cada pessoa da equipe vê e edita apenas o que o seu papel permite. Os dados dos membros pertencem à igreja e são tratados com cuidado: por isso não mostramos capturas aqui.",
+        "Cada pessoa da equipe vê e edita apenas o que o seu papel permite, e os dados dos membros são tratados com cuidado. O mesmo painel publica o site da igreja, com suas pregações, agenda e notícias.",
     },
     status: "active",
     techStack: ["Laravel", "React", "PostgreSQL"],
+    image: {
+      src: "/projects/casa-de-mi-senor.webp",
+      alt: {
+        "es-419":
+          "La página de inicio del sitio de la Iglesia Casa de mi Señor, publicada desde el ChMS, con sus próximas reuniones.",
+        "en-US":
+          "The home page of the Casa de mi Señor church website, published from the ChMS, with its upcoming meetings.",
+        "pt-BR":
+          "A página inicial do site da Igreja Casa de mi Señor, publicada a partir do ChMS, com suas próximas reuniões.",
+      },
+    },
   },
   {
     id: "fundacioncyms-website",
